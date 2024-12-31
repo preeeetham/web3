@@ -1,5 +1,10 @@
-import DashboardFeature from '@/components/dashboard/dashboard-feature'
+import React from "react";
 
-export default function Page() {
-  return <DashboardFeature />
-}
+const HomePage = () => {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 text-gray-800">
+    </main>
+  );
+};
+
+export default HomePage;
