@@ -5,12 +5,11 @@ export const GET = async () => {
     rules: [
       {
         pathPattern: "/*",
-        apiPath: "/api/actions/*",
+        apiPath: "/api/actions/donate/*",
       },
-
       {
-        pathPattern: "/api/actions/**",
-        apiPath: "/api/actions/**",
+        pathPattern: "/api/actions/donate/**",
+        apiPath: "/api/actions/donate/**",
       },
     ],
   };
