@@ -1,57 +1,36 @@
-# template-next-tailwind
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-### Usage
+## Getting Started
 
-Use the [create-solana-dapp](https://github.com/solana-developers/create-solana-dapp) tool to start a new project based on this template (recommended).
+First, run the development server:
 
-```shell
-# created an npm based project
-npx create-solana-dapp --template next-tailwind
-# created an pnpm based project
-pnpx create-solana-dapp --template next-tailwind
-# created an yarn based project
-yarn create solana-dapp --template next-tailwind
-```
-
-### Prerequisites
-
--   Node v18.18.0 or higher
-
-### Manual installation
-
-#### Clone the repo
-
-```shell
-git clone https://github.com/solana-developers/template-next-tailwind.git
-cd template-next-tailwind
-```
-
-#### Install Dependencies
-
-```shell
-pnpm install
-```
-
-#### Start the web app
-
-```
+```bash
+npm run dev
+# or
+yarn dev
+# or
 pnpm dev
+# or
+bun dev
 ```
 
-## Apps
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### web
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This is a Next.js web app to get you started on interacting with the Solana network.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Start the web app
+## Learn More
 
-```shell
-pnpm dev
-```
+To learn more about Next.js, take a look at the following resources:
 
-Build the web app
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```shell
-pnpm build
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
