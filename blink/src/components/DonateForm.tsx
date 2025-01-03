@@ -124,10 +124,3 @@ export function DonateForm() {
     );
 }
 
-
-{
-    "title": "hey ther",
-    "icon": "https://image.com/image",
-    "description": "heyh heyey heyey",
-    "label": "heyy heyy",
-  }
