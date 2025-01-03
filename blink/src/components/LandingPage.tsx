@@ -5,7 +5,11 @@ import { WalletButton } from "./WalletButton";
 import { Card, CardHeader, CardFooter } from "@/components/ui/card";
 
 
-export function LandingPage() {
+interface LandingPageProps {
+  onWalletConnect: () => void;
+}
+
+export function LandingPage({ onWalletConnect }: LandingPageProps) {
   return (
     <>
         <div className="flex px-10 relative">
@@ -20,7 +24,7 @@ export function LandingPage() {
                 </p>
               </CardHeader>
               <CardFooter className="flex flex-col gap-4">
-                <WalletButton />
+                <WalletButton onConnect={onWalletConnect}/>
               </CardFooter>
             </Card>
           </div>

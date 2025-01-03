@@ -1,4 +1,5 @@
 import { WalletProvider } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import {
     WalletModalProvider,
     WalletMultiButton,
@@ -10,9 +11,13 @@ import {
     LedgerWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import '@solana/wallet-adapter-react-ui/styles.css'; // Import default styles for Wallet Adapter
-import { useMemo } from 'react';
+import { useMemo,useEffect } from 'react';
 
-export function WalletButton() {
+interface WalletButtonProps {
+    onConnect: () => void;
+}
+
+export function WalletButton({ onConnect }: WalletButtonProps) {
     // Initialize supported wallets using useMemo for optimization
     const wallets = useMemo(
         () => [
@@ -23,6 +28,14 @@ export function WalletButton() {
         ],
         [] // Ensures memoization
     );
+    const {connect, connected, disconnect} = useWallet();
+
+    useEffect(() => {
+        if (connected) {
+          // Trigger onConnect when the wallet is successfully connected
+          onConnect();
+        }
+      }, [connected, onConnect]);
 
     return (
         <WalletProvider wallets={wallets} autoConnect>
