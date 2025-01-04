@@ -1,34 +1,38 @@
 import { NextResponse } from 'next/server';
-import { type NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { validateInput, generateUniqueId } from '@/utils/validation';
-import { ActionFormInput } from '@/types/types';
 
 const prisma = new PrismaClient();
 
-export async function POST(request: NextRequest) {
+export async function GET(
+  request: Request,
+  context: { params: { id: string } }
+) {
   try {
-    const input: ActionFormInput = await request.json();
-    validateInput(input);
+    const { id } = await context.params;
 
-    const id = generateUniqueId();
+    if (!id) {
+      return NextResponse.json(
+        { success: false, message: 'ID parameter is required.' },
+        { status: 400 }
+      );
+    }
 
-    // Store the action in the database
-    const action = await prisma.action.create({
-      data: {
-        id,
-        title: input.title,
-        icon: input.imageUrl,
-        description: input.description,
-        label: input.label,
-        amounts: input.amounts,
-        customAmount: input.customAmount,
-      },
+    // Fetch the action by ID
+    const action = await prisma.action.findUnique({
+      where: { id },
     });
 
+    if (!action) {
+      return NextResponse.json(
+        { success: false, message: `Action with ID ${id} not found.` },
+        { status: 404 }
+      );
+    }
+
+    // Base URL for constructing links
     const baseUrl = "http://localhost:3000";
 
-    // Create the response
+    // Construct the response
     const response = {
       id: action.id,
       data: {
@@ -38,11 +42,11 @@ export async function POST(request: NextRequest) {
         label: action.label,
         links: {
           actions: [
-            ...input.amounts.map((amount) => ({
+            ...action.amounts.map((amount: number) => ({
               label: `Send ${amount} SOL`,
               href: `${baseUrl}/api/actions?id=${id}&amount=${amount}`,
             })),
-            ...(input.customAmount
+            ...(action.customAmount
               ? [
                   {
                     label: "Send SOL",
@@ -67,9 +71,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: error instanceof Error ? error.message : "Unknown error",
+        message: error instanceof Error ? error.message : 'Unknown error occurred.',
       },
-      { status: 400 }
+      { status: 500 }
     );
   } finally {
     await prisma.$disconnect();

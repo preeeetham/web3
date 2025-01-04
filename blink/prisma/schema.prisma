@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:mysecretpassword@localhost:5432/postgres"
+}
+
+
+model Action {
+  id           String   @id @default(cuid())
+  title        String
+  icon         String
+  description  String
+  label        String
+  amounts      Int[]
+  customAmount Boolean
+  createdAt    DateTime @default(now())
+}

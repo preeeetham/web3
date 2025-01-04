@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LandingPage } from "@/components/LandingPage";
 import { TypeSelection } from "@/components/TypeSelection";
 import { DonateForm } from "@/components/DonateForm";
+import { ActionForm } from "@/components/ActionForm";
 
 export default function Home() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
@@ -16,7 +17,8 @@ export default function Home() {
   return (
     <main className="flex items-center justify-center h-screen">
         {/* <TypeSelection /> */}
-        <DonateForm />
+        {/* <DonateForm /> */}
+        <ActionForm />
     </main>
   );
 }
